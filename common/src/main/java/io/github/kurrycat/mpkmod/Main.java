@@ -137,6 +137,7 @@ public class Main implements MPKModule {
                             if (mainGUI != null) {
                                 mainGUI.setSize(Renderer2D.getScaledSize());
                                 for (Component c : mainGUI.movableComponents) {
+                                    if (c.hidden) continue;
                                     Profiler.startSection(c.getClass().getSimpleName());
                                     c.render(new Vector2D(-1, -1));
                                     Profiler.endSection();

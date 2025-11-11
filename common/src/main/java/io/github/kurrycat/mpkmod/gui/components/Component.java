@@ -12,6 +12,7 @@ import io.github.kurrycat.mpkmod.util.Vector2D;
 public abstract class Component extends ComponentHolder {
     public boolean selected = false;
     public boolean highlighted = false;
+    public boolean hidden = false;
 
     protected Vector2D renderOffset = Vector2D.ZERO;
 
@@ -60,6 +61,9 @@ public abstract class Component extends ComponentHolder {
 
     public PopupMenu getPopupMenu() {
         PopupMenu menu = new PopupMenu();
+        menu.addComponent(
+                new TextCheckButton(Vector2D.OFFSCREEN, "Hide", this.hidden, callback -> this.hidden = callback)
+        );
         menu.addComponent(
                 new Button("Delete", Vector2D.OFFSCREEN, new Vector2D(30, 11), mouseButton -> {
                     if (Mouse.Button.LEFT.equals(mouseButton)) {
